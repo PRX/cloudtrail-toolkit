@@ -44,6 +44,7 @@ Resources:
   RootActivityMonitorFunction:
     Type: AWS::Serverless::Function
     Properties:
+      Architectures: [arm64]
       CodeUri: src/root-activity-monitor
       Description: >-
         Sends messages to Slack in response to root account activity found in
