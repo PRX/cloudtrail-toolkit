@@ -97,7 +97,7 @@ Resources:
   RootActivityMonitorErrorAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      AlarmName: !Sub FATAL [CloudTrail] Activity Monitor <prod> FUNCTION ERRORS (${AWS::StackName})
+      AlarmName: !Sub FATAL [CloudTrail] Root Activity Monitor <prod> FUNCTION ERRORS (${AWS::StackName})
       AlarmDescription: >-
         The Lambda function that relays CloudTrail root account activity to
         Slack is experiencing errors, which means there could be security
@@ -174,7 +174,7 @@ Resources:
   ActivityMonitorErrorAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      AlarmName: !Sub FATAL [CloudTrail] Root Activity Monitor <prod> FUNCTION ERRORS (${AWS::StackName})
+      AlarmName: !Sub FATAL [CloudTrail] Activity Monitor <prod> FUNCTION ERRORS (${AWS::StackName})
       AlarmDescription: >-
         The Lambda function that relays CloudTrail activity to
         Slack is experiencing errors, which means there could be security
