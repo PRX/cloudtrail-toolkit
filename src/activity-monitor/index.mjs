@@ -18,7 +18,7 @@ export const handler = async (event) => {
             channel: "G2QH6NMEH", // #ops-error
             username: "AWS CloudTrail",
             icon_emoji: ":ops-cloudtrail:",
-            text: `Event detected - ${event.account} ${event["detail-type"]} ${event.region} ${event.detail.eventName}`,
+            text: `Event detected - ${event.account} ${event["detail-type"]} ${event.region} ${event.detail.eventSource}:${event.detail.eventName}`,
           }),
         },
       ],
