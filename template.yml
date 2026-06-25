@@ -147,7 +147,7 @@ Resources:
             EventBusName: !Ref OrgSinkEventBus
             Pattern:
               detail:
-                eventSource: [sso.amazonaws.com]
+                eventSource: [sso.amazonaws.com, sso-directory.amazonaws.com]
           Type: EventBridgeRule
       Handler: index.handler
       MemorySize: 192
