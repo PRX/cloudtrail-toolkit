@@ -134,13 +134,20 @@ Resources:
         Variables:
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
       Events:
-        ActivityEvent:
+        IamActivityEvent:
           Properties:
             EventBusName: !Ref OrgSinkEventBus
             Pattern:
               detail:
                 eventSource: [iam.amazonaws.com]
                 eventName: [CreateUser, CreateAccessKey]
+          Type: EventBridgeRule
+        IdentityCenterActivityEvent:
+          Properties:
+            EventBusName: !Ref OrgSinkEventBus
+            Pattern:
+              detail:
+                eventSource: [sso.amazonaws.com]
           Type: EventBridgeRule
       Handler: index.handler
       MemorySize: 192
