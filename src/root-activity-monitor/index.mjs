@@ -8,6 +8,12 @@ const eventbridge = new EventBridgeClient({ apiVersion: "2015-10-07" });
 export const handler = async (event) => {
   console.log(JSON.stringify(event));
 
+  const trailDashboardUrl = `https://${event.detail.awsRegion}.console.aws.amazon.com/cloudtrailv2/home?region=${event.detail.awsRegion}#/events?EventId=${event.detail.eventID}`;
+
+  const deepLinkRoleName = "AdministratorAccess";
+  const urlEncodedTrailDashboardUrl = encodeURIComponent(trailDashboardUrl);
+  const deepTrailDashboardUrl = `https://aws.prx.tech/#/console?account_id=${event.account}&role_name=${deepLinkRoleName}&destination=${urlEncodedTrailDashboardUrl}`;
+
   await eventbridge.send(
     new PutEventsCommand({
       Entries: [
@@ -38,10 +44,10 @@ export const handler = async (event) => {
                         `*AWS Service:* \`${event.detail.eventSource}\``,
                         `*API Action:* \`${event.detail.eventName}\``,
                         "\n",
-                        `*IP Address:* \`<https://ip.me/ip/${event.detail.sourceIPAddress}|${event.detail.sourceIPAddress}>\``,
+                        `*<https://ip.me/ip/${event.detail.sourceIPAddress}|IP Address>:* \`<https://ip.me/ip/${event.detail.sourceIPAddress}|${event.detail.sourceIPAddress}>\``,
                         `*Identity ARN:* \`${event.detail.userIdentity.arn}\``,
                         "\n",
-                        `*Event ID:* \`${event.detail.eventID}\``,
+                        `*<${deepTrailDashboardUrl}|Event ID>:* \`<${deepTrailDashboardUrl}|${event.detail.eventID}>\``,
                         `*Request ID:* \`${event.detail.requestID}\``,
                         "\n",
                         "*User Agent:*",
