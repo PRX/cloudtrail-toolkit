@@ -18,7 +18,53 @@ export const handler = async (event) => {
             channel: "G2QH6NMEH", // #ops-error
             username: "AWS CloudTrail",
             icon_emoji: ":ops-cloudtrail:",
-            text: `Event detected - ${event.account} ${event["detail-type"]} ${event.region} ${event.detail.eventSource}:${event.detail.eventName}`,
+            blocks: [
+              {
+                type: "container",
+                width: "full",
+                title: {
+                  type: "plain_text",
+                  text: `Event detected: ${event["detail-type"]}`
+                },
+                child_blocks: [
+                  {
+                    type: "section",
+                    text: {
+                      type: "mrkdwn",
+                      text: [
+                        `*Event Time:* \`${event.detail.eventTime}\``,
+                        `*Account:* \`${event.account}\` | \`${event.detail.awsRegion}\``,
+                        "\n",
+                        `*AWS Service:* \`${event.detail.eventSource}\``,
+                        `*API Action:* \`${event.detail.eventName}\``,
+                        "\n",
+                        `*IP Address:* \`<https://ip.me/ip/${event.detail.sourceIPAddress}|${event.detail.sourceIPAddress}>\``,
+                        `*Identity ARN:* \`${event.detail.userIdentity.arn}\``,
+                        "\n",
+                        `*Event ID:* \`${event.detail.eventID}\``,
+                        `*Request ID:* \`${event.detail.requestID}\``,
+                        "\n",
+                        "*User Agent:*"
+                      ].join("\n")
+                    }
+                  },
+                  {
+                    type: "rich_text",
+                    elements: [
+                      {
+                        type: "rich_text_preformatted",
+                        elements: [
+                          {
+                            type: "text",
+                            text: event.detail.userAgent
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }),
         },
       ],
