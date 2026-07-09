@@ -24,7 +24,7 @@ export const handler = async (event) => {
                 width: "full",
                 title: {
                   type: "plain_text",
-                  text: `Event detected: ${event["detail-type"]}`
+                  text: `Event detected: ${event["detail-type"]}`,
                 },
                 child_blocks: [
                   {
@@ -44,9 +44,9 @@ export const handler = async (event) => {
                         `*Event ID:* \`${event.detail.eventID}\``,
                         `*Request ID:* \`${event.detail.requestID}\``,
                         "\n",
-                        "*User Agent:*"
-                      ].join("\n")
-                    }
+                        "*User Agent:*",
+                      ].join("\n"),
+                    },
                   },
                   {
                     type: "rich_text",
@@ -56,15 +56,15 @@ export const handler = async (event) => {
                         elements: [
                           {
                             type: "text",
-                            text: event.detail.userAgent
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+                            text: event.detail.userAgent,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           }),
         },
       ],
