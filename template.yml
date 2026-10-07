@@ -155,7 +155,9 @@ Resources:
             Pattern:
               recipientAccountId: ["891048843256"]
               userIdentity:
-                arn: [ { "anything-but": { "prefix": "arn:aws:sts::891048843256:assumed-role/AWSReservedSSO_SafeArchiveAccess_" } } ]
+                arn:
+                  - "anything-but":
+                      "prefix": "arn:aws:sts::891048843256:assumed-role/AWSReservedSSO_SafeArchiveAccess_"
           Type: EventBridgeRule
       Handler: index.handler
       MemorySize: 192
